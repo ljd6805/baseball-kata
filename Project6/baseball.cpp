@@ -18,5 +18,12 @@ public:
 				throw invalid_argument("Must be number.");
 			}
 		}
+
+		if(gussNumber[0]==gussNumber[1]
+			|| gussNumber[0] == gussNumber[2]
+			|| gussNumber[1] == gussNumber[2])
+		{
+			throw invalid_argument("Must Not have the same number");
+		}
 	}
 };
