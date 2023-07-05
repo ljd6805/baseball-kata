@@ -1,6 +1,8 @@
 #include "pch.h"
+#include "../Project6/baseball.cpp"
 
-TEST(TestCaseName, TestName) {
-  EXPECT_EQ(1, 1);
-  EXPECT_TRUE(true);
+
+TEST(BaseballGame, ThrowExceptionWhenInputLengthIsUnmached) {
+	Baseball game;
+	EXPECT_THROW(game.guess(string("12")), length_error);
 }
