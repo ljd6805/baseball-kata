@@ -4,14 +4,14 @@ using namespace std;
 class Baseball
 {
 public:
-	void guess(const string& str)
+	void guess(const string& gussNumber)
 	{
-		if (str.length() != 3)
+		if (gussNumber.length() != 3)
 		{
 			throw length_error("Must be three letters.");
 		}
 
-		for(char ch : str)
+		for(char ch : gussNumber)
 		{
 			if(ch < '0' || ch > '9')
 			{
