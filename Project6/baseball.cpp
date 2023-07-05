@@ -4,7 +4,14 @@ using namespace std;
 class Baseball
 {
 public:
-	void guess(const string& gussNumber)
+	bool isDuplicateNumber(const string& gussNumber)
+	{
+		return gussNumber[0] == gussNumber[1]
+			|| gussNumber[0] == gussNumber[2]
+			|| gussNumber[1] == gussNumber[2];
+	}
+
+	void assertIllegalAgument(const string& gussNumber)
 	{
 		if (gussNumber.length() != 3)
 		{
@@ -13,17 +20,18 @@ public:
 
 		for(char ch : gussNumber)
 		{
-			if(ch < '0' || ch > '9')
-			{
-				throw invalid_argument("Must be number.");
-			}
+			if(ch >= '0' && ch <= '9')	continue;
+			throw invalid_argument("Must be number.");
 		}
 
-		if(gussNumber[0]==gussNumber[1]
-			|| gussNumber[0] == gussNumber[2]
-			|| gussNumber[1] == gussNumber[2])
+		if(isDuplicateNumber(gussNumber))
 		{
 			throw invalid_argument("Must Not have the same number");
 		}
+	}
+
+	void guess(const string& gussNumber)
+	{
+		assertIllegalAgument(gussNumber);
 	}
 };
