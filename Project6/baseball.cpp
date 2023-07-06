@@ -42,16 +42,32 @@ public:
 		}
 	}
 
+	GuessResult checkStrikes(const string& guessNumber)
+	{
+		GuessResult result = { false, 0, 0 };
+		for(int i=0;i<3;i++)
+		{
+			if(guessNumber[i]==question[i])
+			{
+				result.strikes++;
+			}
+		}
+
+		return result;
+	}
+
 	GuessResult guess(const string& guessNumber)
 	{
 		assertIllegalAgument(guessNumber);
-
-		if(guessNumber == question)
+		GuessResult result = {false,0,0};
+		if (guessNumber == question)
 		{
 			return { true, 3, 0 };
 		}
 
-		return { false, 0, 0 };
+		result = checkStrikes(guessNumber);
+
+		return result;
 	}
 
 private:
