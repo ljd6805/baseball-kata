@@ -42,18 +42,35 @@ public:
 		}
 	}
 
-	GuessResult checkStrikes(const string& guessNumber)
+	int checkStrikes(const string& guessNumber)
 	{
-		GuessResult result = { false, 0, 0 };
+		int strikes = 0;
 		for(int i=0;i<3;i++)
 		{
 			if(guessNumber[i]==question[i])
 			{
-				result.strikes++;
+				strikes++;
 			}
 		}
 
-		return result;
+		return strikes;
+	}
+
+	int checkBalls(const string& guessNumber)
+	{
+		int balls = 0;
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				if ((i!=j) && (guessNumber[i]==question[j]))
+				{
+					balls++;
+				}
+			}
+		}
+
+		return balls;
 	}
 
 	GuessResult guess(const string& guessNumber)
@@ -65,7 +82,9 @@ public:
 			return { true, 3, 0 };
 		}
 
-		result = checkStrikes(guessNumber);
+		result.strikes = checkStrikes(guessNumber);
+
+		result.balls =  checkBalls(guessNumber);
 
 		return result;
 	}
